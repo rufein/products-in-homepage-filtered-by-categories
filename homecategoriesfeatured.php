@@ -31,7 +31,7 @@ class HomeCategoriesFeatured extends Module
 		$this->name = 'homecategoriesfeatured';
 		$this->tab = 'front_office_features';
 		$this->version = '1.0';
-		$this->author = 'Koldo Gonzalez (Rufein)';
+		$this->author = 'Koldo Gonzalez (Rufein -- www.funkydrop.net)';
 		$this->need_instance = 0;
 
 		$this->bootstrap = true;
