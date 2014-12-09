@@ -91,8 +91,10 @@ class HomeCategoriesFeatured extends Module
 			}
 			if (isset($errors) && count($errors))
 				$output .= $this->displayError(implode('<br />', $errors));
-			else
+			else{
 				$output .= $this->displayConfirmation($this->l('Your settings have been updated.'));
+				$this->_clearCache('*');
+			}
 		}
 
 		return $output.$this->renderForm();
@@ -136,7 +138,7 @@ class HomeCategoriesFeatured extends Module
 	public function hookDisplayHomeTab($params)
 	{
 
-		if (!$this->isCached('tab.tpl', $this->getCacheId('homecategoriesfeatured-tab'))) {
+		if (!$this->isCached('homecategoriesfeatured-tab.tpl', $this->getCacheId())) {
 			$this->_cacheProducts();
 			$this->smarty->assign(
 			    array(
@@ -146,7 +148,7 @@ class HomeCategoriesFeatured extends Module
 		}
 		
 		
-		return $this->display(__FILE__, 'tab.tpl', $this->getCacheId('homecategoriesfeatured-tab'));
+		return $this->display(__FILE__, 'homecategoriesfeatured-tab.tpl', $this->getCacheId());
 	}
 
 	public function hookDisplayHome($params)
@@ -195,7 +197,7 @@ class HomeCategoriesFeatured extends Module
 	public function _clearCache($template, $cache_id = NULL, $compile_id = NULL)
 	{
 		parent::_clearCache('homecategoriesfeatured.tpl');
-		parent::_clearCache('tab.tpl', 'homecategoriesfeatured-tab');
+		parent::_clearCache('homecategoriesfeatured-tab.tpl');
 	}
 
 	public function renderForm()
